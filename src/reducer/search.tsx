@@ -1,5 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import {ISearch} from '../interface'
+
+
+const initialState: ISearch = {
+  bikePoints: [],
+  loading: false,
+  error:false,
+
+}
 
 export const fetchSearchResult = createAsyncThunk(
   'home/search',
@@ -19,11 +28,7 @@ export const fetchSearchResult = createAsyncThunk(
 const searchDataSlice = createSlice(
   {
     name: 'home/search',
-    initialState: {
-      bikePoints: [] as any,
-      loading: false,
-      error: false,
-    } as any,
+    initialState,
     reducers: {
     },
     extraReducers: {

@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import { fetchServiceStatus } from '../reducer/home'
 import Service from '../component/Service'
 import Search from '../component/Search'
-import {IFilteredDisruption} from '../interface'
-
+import {IFilteredDisruption , RootState , IServicedata} from '../interface'
+import {StatusType  , ServiceData , BikePoints} from  '../types'
 
 const Container = styled.div`
   background: #dddd;
@@ -43,11 +43,14 @@ const Button = styled.button`
   padding: 7px;
 `;
 
+
+
+
 const Home: React.FC = () => {
   const dispatch = useDispatch();
-  const serviceDatas = useSelector((state: any) => state.home.serviceDatas)
-  const loading = useSelector((state: any) => state.home.loading)
-  const error = useSelector((state: any) => state.home.error)
+  const serviceDatas = useSelector((state:  RootState) => state.home.serviceDatas)
+  const loading = useSelector((state: RootState) => state.home.loading)
+  const error = useSelector((state: RootState) => state.home.error)
   const [filtered, setFilteredArray] = useState();
   const [activeSearch, setActiveSearch] = useState(false);
 
@@ -74,8 +77,8 @@ const Home: React.FC = () => {
         <Items>
           <MenuContainer>            
               {
-                serviceDatas && Object.values(serviceDatas).sort((a?: any, b?: any) => (a.modeName === b.modeName) ? a.name.localeCompare(b.name) : a.modeName.localeCompare(b.modeName))
-                  .map((service?: any) => <Service service={service} key={service.id} setValue={setFilteredArray} />)
+                serviceDatas && Object.values(serviceDatas).sort((a: ServiceData, b: ServiceData) => (a.modeName === b.modeName) ? a.name.localeCompare(b.name) : a.modeName.localeCompare(b.modeName))
+                  .map((service : ServiceData) => <Service service={service} key={service.id} setValue={setFilteredArray} />)
               }            
             <Button onClick={onActiveSearch} >
               Cycle Hire
@@ -98,7 +101,7 @@ const Home: React.FC = () => {
 
 
 export const Header: React.FC<IFilteredDisruption> = ({ filtered }) => {
-  const status = filtered.length > 0 && filtered.map((element?: any) => element.disruption)
+  const status = filtered.length > 0 && filtered.map((element: StatusType ) => element.disruption)
 
   return (
     <HeaderItems>
@@ -107,7 +110,7 @@ export const Header: React.FC<IFilteredDisruption> = ({ filtered }) => {
           <>
             <strong>Service currently suffering disruptions </strong>
             {
-              status.map((column?: any, index?: any) => <span key={index}>{column.description}</span>)
+              status.map((column: any, index : any) => <span key={index}>{column.description}</span>)
             }
           </>
           :

@@ -2,8 +2,9 @@
 import React, { useCallback, useState } from 'react';
 import { fetchSearchResult } from '../../reducer/search';
 import { useDispatch, useSelector } from 'react-redux';
-import debounce from 'lodash/debounce'
+import debounce from 'lodash/debounce';
 import styled from 'styled-components';
+import { RootState } from '../../interface'
 
 const HeaderContainer = styled.div`
     display: flex;
@@ -26,9 +27,9 @@ const BodyContainer = styled.div`
 const Search: React.FC = () => {
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState('');
-  const bikePoints = useSelector((state: any) => state.search.bikePoints)
-  const loading = useSelector((state: any) => state.search.loading)
-  const error = useSelector((state: any) => state.search.error)
+  const bikePoints = useSelector((state: RootState) => state.search.bikePoints)
+  const loading = useSelector((state: RootState) => state.search.loading)
+  const error = useSelector((state: RootState) => state.search.error)
 
   const handleSearch = useCallback(
     debounce(value => {

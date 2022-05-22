@@ -1,6 +1,14 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, EntityState } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { IServiceData } from '../interface'
+import { IServicedata } from '../interface'
+
+
+const initialState: IServicedata = {
+  serviceDatas: [],
+  loading: false,
+  error:false,
+
+}
 
 export const fetchServiceStatus = createAsyncThunk(
   'home/fetchServices',
@@ -21,11 +29,7 @@ export const fetchServiceStatus = createAsyncThunk(
 const servicDataSlice = createSlice(
   {
     name: 'home/fetchServices',
-    initialState: {
-      serviceDatas: [] as Array<IServiceData>,
-      loading: false,
-      error: false,
-    } as any,
+    initialState,
     extraReducers: {
       [fetchServiceStatus.pending as any]: (state: any) => {
         return { ...state, loading: true } as any;

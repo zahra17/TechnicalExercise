@@ -1,23 +1,32 @@
-import React from 'react'
-import {StatusType} from  '../types'
+import {StatusType  , ServiceData , BikePoints} from  '../types'
+
+export interface RootState {
+  home: IServicedata,
+  search:ISearch
+  
+}
+
+export interface IServicedata {
+  serviceDatas: Array<ServiceData>,
+  loading: boolean,
+  error: boolean,
+  
+}
+
+export interface ISearch {
+  bikePoints: Array<BikePoints>,
+  loading: boolean,
+  error: boolean,
+  
+}
 
 export interface IFilteredDisruption {
     filtered: Array<StatusType>
   }
 
-export  interface IServiceData {
-    $type:string,
-    id:string,
-    name:string,
-    modeName:string
-    disruptions:Array<unknown>
-    created:string
-    modified:string
-    lineStatuses:Array<unknown>
-    routeSections:Array<unknown>
-    serviceTypes:Array<unknown>
-    crowding:object
-}
+
+
+
 
 
   
