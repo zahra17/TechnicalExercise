@@ -4,7 +4,7 @@ import { IService } from './Service';
 
 const Service: React.FC<IService.IProps> = ({ service, setValue }) => {
   const { name, serviceTypes, lineStatuses } = service;
-  const filteredValue = serviceTypes.filter((t?: any) => t.name === 'Night');
+  const serviceTypesFiltered = serviceTypes.filter((t?: any) => t.name === 'Night');
   const disruptions = lineStatuses.filter((t?: any) => t.statusSeverity !== 10)
 
 
@@ -12,9 +12,9 @@ const Service: React.FC<IService.IProps> = ({ service, setValue }) => {
     <div
       onClick={() => setValue(disruptions)}
     >
-      {name}
-      {filteredValue.length > 0 && " - evening  "}
-      {disruptions.length > 0 && " - disruptions  "}
+      <span data-testid="service-name">{name}</span>
+      <span data-testid="service-type">{serviceTypesFiltered.length > 0 && " - evening  "}</span>
+      <span data-testid="service-disruptions">{disruptions.length > 0 && " - disruptions  "}</span>
     </div>
   );
 };
