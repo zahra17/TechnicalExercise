@@ -70,7 +70,6 @@ const Home: React.FC = () => {
     return <div>Error! {error}</div>
   }
 
-  console.log("serviceDatas",serviceDatas)
 
   return (
     <Container>
