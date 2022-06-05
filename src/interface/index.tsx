@@ -1,4 +1,4 @@
-import { StatusType, ServiceData, BikePoints } from "../types";
+import { StatusType, ServiceData, BikePoints } from "../types"
 
 export interface RootState {
   home: IServicedata;
