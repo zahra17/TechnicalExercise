@@ -8,7 +8,7 @@ export type StatusType = {
   closureText: string;
   created: string;
   description: string;
-};
+}
 
 export type ServiceData = {
   $type: string;
@@ -22,11 +22,11 @@ export type ServiceData = {
   routeSections: Array<unknown>;
   serviceTypes: Array<unknown>;
   crowding: object;
-};
+}
 
 export type BikePoints = {
   id: string;
   commonName: string;
   lat: string;
   lon: string;
-};
+}
